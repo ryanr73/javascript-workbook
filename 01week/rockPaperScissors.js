@@ -22,7 +22,7 @@ function rockPaperScissors(hand1, hand2) {
     } else {
       if (hand2 === "paper"){
            //hand 2 wins
-          return "Paper Wins";
+        return "Paper Wins";
       }
     }
   }
@@ -34,7 +34,7 @@ function rockPaperScissors(hand1, hand2) {
     } else {
       if (hand2 === "scissors"){
            //hand 2 wins
-           return "scissors Wins";
+        return "Scissors Wins";
       }
     }
   }
@@ -46,7 +46,7 @@ function rockPaperScissors(hand1, hand2) {
     } else {
       if (hand2 === "paper"){
            //hand 1 wins
-           return "Paper Wins";
+        return "Paper Wins";
       }
     }
   }
