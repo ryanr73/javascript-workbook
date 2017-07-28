@@ -6,6 +6,24 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+// Prob­lem :
+// The Tow­ers of Hanoi is a clas­sic puz­zle with 3 stacks or towers and mul­ti­ple disks of dif­fer­ent sizes.
+// The goal of the puz­zle is to move all the disks from the first peg to the third peg accord­ing to the fol­low­ing rules :
+// 	• Only one disk can be moved at a time.
+// 	• You can only move the top disc in a stack.
+// 	• No disk may be placed on top of a smaller disk.
+//
+// Logic:
+//
+// Board has only 3 options stacks a, b, or c
+// Player selects piece from stack that has a disk
+// Check for empty stack
+// Legal if the disk selected is smaller than the value of the disk on that targeted stack
+// Move piece, if move is illegal prompt player to try again, if legal move piece.
+// If move is not legal block move
+// Check for win if player has successfully moved all the disks to another stack
+// Announce Winner
+// Else continue playing checking for legal or illegal moves
 
 let stacks = {
   a: [4, 3, 2, 1],
@@ -19,20 +37,21 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
+function movePiece () {
   // Your code here
-
+  if (n > 0) {
+    movePiece(n-1, a, c, b);
+    console.log("Move disk from " + a + " to " + c);
+    movePiece(n-1, b, a, c);
+  }
 }
+movePiece(4, "A", "B", "C");
 
 function isLegal() {
   // Your code here
 
-}
-
 function checkForWin() {
-  // Your code here
-
-}
+    // Your code here
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
