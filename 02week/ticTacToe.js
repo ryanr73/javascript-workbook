@@ -3,7 +3,7 @@
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
-  input: process.stdin,
+input: process.stdin,
   output: process.stdout
 });
 let board = [
@@ -14,7 +14,7 @@ let board = [
 
 let playerTurn = 'X';
 
-function printBoard() {
+const printBoard() => {
   console.log('   0  1  2');
   console.log('0 ' + board[0].join(' | '));
   console.log('  ---------');
@@ -23,25 +23,41 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
-  // Your code here
+const horizontalWin() => {
+  if (num => 0 && num < 3) {
+         row.cells.push(this.cells[3*num], this.cells[(3*num)+1], this.cells[(3*num)+2]);
+         return row;
+     }
 }
 
-function verticalWin() {
-  // Your code here
+const verticalWin() => {
+  if (num => 3 && num < 6) {
+       row.cells.push(this.cells[num-3], this.cells[(num], this.cells[num+3]);
+       return row;
+   }
 }
 
-function diagonalWin() {
-  // Your code here
-}
+const diagonalWin() => {
+  if (num == 6) {
+         row.cells.push(this.cells[0], this.cells[(5], this.cells[8]);
+         return row;
+     }
+
+     if (num == 7) {
+         row.cells.push(this.cells[2], this.cells[(5], this.cells[6]);
+         return row;
+     }
+     return false;
+ };
 
 function checkForWin() {
   // Your code here
-}
+  }
 
 function ticTacToe(row, column) {
   // Your code here
-}
+
+ }
 
 function getPrompt() {
   printBoard();
