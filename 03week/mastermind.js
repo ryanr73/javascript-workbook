@@ -28,20 +28,27 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
+function generateHint(userGuess) {
   //create two options: 1) right color, right place, 2)right color, wrong place
   //alert user for hint option 1 or 2
-  console.log('generate hint');
+  let exactMatch = 0;
+  let correctLetter = 0;
+  for (let i=0; i<userGuess.length; i++) {
+    if (userGuess[i] === solution[i]) {
+      exactMatch++;
+    }
+  }
 
+  return `${exactMatch}-${correctLetter}`;
 }
 
   //valid contains a-h and only four letters
   //valid tests player entry
-function valid(guess) {
- if (guess.length !== solution.length) {
+function valid(userGuess) {
+ if (userGuess.length !== solution.length) {
    return false;
  }
- return guess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
+ return userGuess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
   // console.log(solution);
   // console.log(guess);
   return true;
@@ -58,7 +65,7 @@ function mastermind(guess) {
     if (guess === solution) {
       console.log('You Win!')
     } else {
-      generateHint;
+      console.log(`Hint (exact match-correct letter): ${generateHint()}`);
     }
   } else {
     console.log('Wrong options, use only letters A-H and only 4 letters');
