@@ -29,12 +29,40 @@ function getRandomInt(min, max) {
 }
 
 function generateHint() {
-  // your code here
+  //create two options: 1) right color, right place, 2)right color, wrong place
+  //alert user for hint option 1 or 2
+  console.log('generate hint');
+
+}
+
+  //valid contains a-h and only four letters
+  //valid tests player entry
+function valid(guess) {
+ if (guess.length !== solution.length) {
+   return false;
+ }
+ return guess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
+  // console.log(solution);
+  // console.log(guess);
+  return true;
 }
 
 function mastermind(guess) {
-  solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
+  // solution = 'abcd'; // Comment this out to generate a random solution
+  // if test entry contains a-h and only four letters
+  //    test for win
+  //    if no win, generateHint
+  //else test entry is bad, alert user to try again
+
+  if (valid(guess)) {
+    if (guess === solution) {
+      console.log('You Win!')
+    } else {
+      generateHint;
+    }
+  } else {
+    console.log('Wrong options, use only letters A-H and only 4 letters');
+  }
 }
 
 
