@@ -30,7 +30,7 @@ function getRandomInt(min, max) {
 
 function generateHint(userGuess) {
   //create two options: 1) right color, right place, 2)right color, wrong place
-  //alert user for hint option 1 or 2
+  //alert user for hint option 1 or 2, must set up format of [1-2]
   let exactMatch = 0;
   let correctLetter = 0;
   let solutionArr = solution.split('');
@@ -42,26 +42,26 @@ function generateHint(userGuess) {
       userGuessArr[i]= '';
     }
   }
- for(let i=0; i<userGuessArr.length; i++) {
-   if(userGuessArr[i]) {
-     for (let j=0; j<solutionArr.length; j++) {
-       if (userGuessArr[i] === solutionArr[j]) {
-         correctLetter++;
-         solutionArr[j] = '';
-       }
-     }
-   }
- }
+  for(let i=0; i<userGuessArr.length; i++) {
+    if(userGuessArr[i]) {
+      for (let j=0; j<solutionArr.length; j++) {
+        if (userGuessArr[i] === solutionArr[j]) {
+          correctLetter++;
+          solutionArr[j] = '';
+        }
+      }
+    }
+  }
   return `${exactMatch}-${correctLetter}`;
 }
 
   //valid contains a-h and only four letters
   //valid tests player entry
 function valid(userGuess) {
- if (userGuess.length !== solution.length) {
-   return false;
- }
- return userGuess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
+  if (userGuess.length !== solution.length) {
+    return false;
+  }
+  return userGuess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
   // console.log(solution);
   // console.log(guess);
   return true;
@@ -75,6 +75,7 @@ function mastermind(guess) {
   //else test entry is bad, alert user to try again
 
   if (valid(guess)) {
+    board[board.length] = `${guess} : ${generateHint(guess)}`;
     if (guess === solution) {
       console.log('You Win!')
     } else {
@@ -84,7 +85,6 @@ function mastermind(guess) {
     console.log('Wrong options, use only letters A-H and only 4 letters');
   }
 }
-
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
