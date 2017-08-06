@@ -9,29 +9,41 @@ function getRandomInt(min, max) {
 }
 
 let arr = [];
-
-for (let i = 0; i < 1000; i++) {
+let turn = false;
+for (let i = 0; i < 10; i++) {
   arr.push(getRandomInt(0, 1000));
 }
 
-function bubbleSort(arr) {
+function bubbleSort(ari) {
   // Your code here
-  for (i=0; i<arr.length; i++) {
-    if (arr[i] > arr [i + 1]) {
-      let temp = arr[i]
-      arr[i] = arr[i+1];
-      arr[i+1] = temp;
+  for (let i=0; i < ari.length; i++) {
+    if (ari[i] > ari[i + 1]) {
+      turn = true;
+      ari[i+1] = ari[i+1] - ari[i];
+      ari[i] = ari[i] + ari[i+1];
+      ari[i+1] = ari[i] - ari[i+1];
     }
+  }
+  if (turn) {
+    let turn = false;
+    return bubbleSort(ari);
+  } else {
+    return ari;
   }
 }
 
-function mergeSort(arr) {
-  // Your code here
-}
+console.log(arr);
+console.log(bubbleSort(arr));
 
-function binarySearch(arr, item) {
-  // Your code here
-}
+// function mergeSort() {
+//   // Your code here
+//
+// }
+
+// function binarySearch() {
+//   // Your code here
+//
+// }
 
 // Tests
 
