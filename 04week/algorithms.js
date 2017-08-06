@@ -15,7 +15,9 @@ for (let i = 0; i < 10; i++) {
 }
 
 function bubbleSort(ari) {
-  // Your code here
+  //bubblesort will sort passed array
+  // compare array [n] to array [n+1]
+  //if numbers are larger the turn/reverse order
   for (let i=0; i < ari.length; i++) {
     if (ari[i] > ari[i + 1]) {
       turn = true;
@@ -25,7 +27,7 @@ function bubbleSort(ari) {
     }
   }
   if (turn) {
-    let turn = false;
+    turn = false;
     return bubbleSort(ari);
   } else {
     return ari;
@@ -35,10 +37,27 @@ function bubbleSort(ari) {
 console.log(arr);
 console.log(bubbleSort(arr));
 
-// function mergeSort() {
-//   // Your code here
-//
-// }
+function mergeSort(ari) {
+  // is a recursive algoritm
+  // function is to divide in half and continues until two elements left and rightSide
+  // then orders the smaller arrays
+  //finally starts to merge arrays again
+  let middle = Math.floor(ari.length / 2);
+  let leftSide = ari.slice(0, middle);
+  let rightSide = ari.slice(middle);
+
+  return merge(mergeSort(leftSide), mergeSort(rightSide));
+}
+
+function merge (left, right) {
+  let result = [];
+  while (left.length && right.length)
+    result.push(left[0] < right[0]? left.shift() : right.shift());
+  return result.concat(left.length? left : right);
+}
+
+console.log(arr);
+console.log(mergeSort(arr));
 
 // function binarySearch() {
 //   // Your code here
