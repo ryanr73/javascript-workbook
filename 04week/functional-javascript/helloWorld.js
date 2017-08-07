@@ -27,7 +27,16 @@
 
 //Excercise 4
 // Basic:filter
-function getShortMessages(messages) {
-  return Object.values(messages).filter(aMessage => aMessage.length < 50);
+// function getShortMessages(messages) {
+// return messages.map(messageObj => messageObj['message']).filter(message => message.length < 50);
+// }
+// module.exports = getShortMessages
+
+//Excercise 5
+// Basic: Every some
+function checkUsersValid(goodUsers) {
+  return function allUsersValid(submittedUsers) {
+
+  };
 }
-module.exports = getShortMessages
+module.exports = checkUsersValid

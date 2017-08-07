@@ -41,7 +41,8 @@ function mergeSort(ari) {
   // is a recursive algoritm
   // function is to divide in half and continues until two elements left and rightSide
   // then orders the smaller arrays
-  //finally starts to merge arrays again
+  //finally starts to merge arrays again and sorts
+  if (ari.length < 2) return ari;
   let middle = Math.floor(ari.length / 2);
   let leftSide = ari.slice(0, middle);
   let rightSide = ari.slice(middle);
@@ -59,10 +60,19 @@ function merge (left, right) {
 console.log(arr);
 console.log(mergeSort(arr));
 
-// function binarySearch() {
-//   // Your code here
-//
-// }
+function binarySearch(ari, item, start=0, end = ari.length-1) {
+  // Your code here
+  let middle = Math.floor(start + (end-start)/2);
+    console.log(start, end, middle, ari[middle]);
+    if (item == ari[middle]) return middle;
+    else if (start>=end) return false;
+    else if (item < ari[middle]) return binarySearch(ari, item, start, middle-1);
+    else if (item > ari[middle]) return binarySearch(ari, item, middle+1, end);
+  }
+
+  console.log(arr);
+  console.log(binarySearch(arr, 75));
+
 
 // Tests
 
