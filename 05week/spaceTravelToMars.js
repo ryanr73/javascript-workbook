@@ -16,7 +16,18 @@ let jobTypes = {
 //3) should have a name, a type, an ability and an empty crew upon instantiation
 // 4) can return a mission statement correctly
 
-// Your code here
+class CrewMember {
+constructor(name, job, specialSkill, ship){
+this.name = name;
+this.job = job;
+this.specialSkill = specialSkill;
+this.ship = null;
+}
+enterShip(theShip) {
+this.ship = theShip;
+theShip.crew.push(this);
+}
+}
 
 //tests
 if (typeof describe === 'function'){
