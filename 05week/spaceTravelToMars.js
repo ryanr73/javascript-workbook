@@ -29,6 +29,16 @@ theShip.crew.push(this);
 }
 }
 
+class Ship {
+constructor(name, type, ability, crew) {
+this.name = name;
+this.type = type;
+this.ability = ability;
+this.crew = [];
+}
+const mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into lower orbit');
+console.log('mav', mav);
+
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
