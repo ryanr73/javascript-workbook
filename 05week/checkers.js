@@ -1,3 +1,17 @@
+//first create checker pieces for red and black
+//place pieces on row/column
+// red [0,1],[0,3], [0,5], [0,7],
+//     [1,0],[1,2], [1,4], [1,6],
+//     [2,1],[2,3], [2,5], [2,7],
+
+// black [5,0], [5,2], [5,4], [5,6];,
+//       [6,1], [6,3], [6,5], [6,7],
+//       [7,0], [7,2], [7,4], [7,6]
+//create a move function that:
+// allows only red to select red checker, and white to select white checker
+//selects piece and where it is placed (start and end using row & column),
+//
+
 'use strict';
 
 const assert = require('assert');
@@ -8,9 +22,19 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+function Checker(color) {
+  // creates my pieces, white and black; eliminates alternate colors
+  if (color === 'white') {
+    this.symbol = String.fromCharCode(0x125CB);
+  }
+  else if (color === 'black') {
+    this.symbol = String.fromCharCode(0x125CF);
+  }
+  else {
+    return 'color invalid';
+  }
 }
+
 
 function Board() {
   this.grid = [];
@@ -52,7 +76,14 @@ function Board() {
     console.log(string);
   };
 
-  // Your code here
+  this.checkers = [];
+
+  this.createCheckers = function() {
+    const whiteChecker = new Checker('White');
+    const blackChecker = new Checker('Black');
+  }
+
+    // Your code here
 }
 function Game() {
 
