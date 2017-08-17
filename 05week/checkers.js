@@ -80,47 +80,112 @@ function Board() {
     console.log(string);
   };
 
-  // Your code here
 //create an array for checkers
-//create checkers on board
-this.checkers = [];
+//creates checkers on board
+  this.checkers = [];
 //creates white checkers on board, adds to checkers array
   this.createCheckers = function() {
     for (let i = 0; i <= 2; i++) {
-        for (let j = 1; j <= 7; j+=2) {
-          if ((i === 1) && (j % 2 !== 0)) (j = j - 1);
-          let whiteChecker = new Checker('white');
-          this.grid[i][j] = whiteChecker;
-          this.checkers.push(whiteChecker);
-  }
-}
+      for (let j = 1; j <= 7; j+=2) {
+        if ((i === 1) && (j % 2 !== 0)) (j = j - 1);
+        let whiteChecker = new Checker('white');
+        this.grid[i][j] = whiteChecker;
+        this.checkers.push(whiteChecker);
+      }
+    }
 //creates black checkers on board, adds to checkers array
-for (var i = 5; i <= 7; i++) {
-     for (var j = 1; j <= 7; j+=2) {
-       if ((i === 5 || i === 7) && (j % 2 !== 0)) (j = j - 1);
-       let blackChecker = new Checker('black');
-       this.grid[i][j] = blackChecker;
-       this.checkers.push(blackChecker);
-     }
-   };
- }
- this.selectChecker = function(position) {
-     console.log(this.grid);
-   }
- }
+    for (let i = 5; i <= 7; i++) {
+      for (let j = 1; j <= 7; j+=2) {
+        if ((i === 5 || i === 7) && (j % 2 !== 0)) (j = j - 1);
+        let blackChecker = new Checker('black');
+        this.grid[i][j] = blackChecker;
+        this.checkers.push(blackChecker);
+      }
+    };
+  }
+  this.selectChecker = function(position) {
+    console.log(this.grid);
+  };
+}
+// killing a checker: 1)
+this.killChecker = function(position) {
+  let row = position[0];
+  let col = position[1];
+  this.checkers.splice(this.selectChecker(row, col), 1);
+  this.grid[row][col] = null;
+}
 
 function Game() {
-
   this.board = new Board();
 
   this.start = function() {
     this.board.createGrid();
     // Your code here
     this.board.createCheckers();
-
   };
-}
 
+  this.moveChecker = function(start, end) {
+    let rowStart = start[0];
+    let colStart = start[1];
+    let rowEnd = end[0];
+    let colEnd = end[1];
+    let validSpace = (rowEnd % 2) - (colEnd % 2);
+
+// if there is a checker at start to move:
+    if (this.board.grid[rowStart][colStart]) {
+      console.log('\nThat is a valid checker to move.');
+      // if the end space already has a checker there, or is not valid space to move to:
+      if ((this.board.grid[rowEnd][colEnd]) || (!validSpace)) {
+        console.log('That is NOT a valid space to move to.  Try again.\n');
+        alertTerminal2();
+        return false;
+      } else {
+
+             // if start is true and end is false, move checker there and nullify start position:
+             // * But don't remove piece from checkers array *
+        this.board.grid[rowEnd][colEnd] = this.board.selectChecker(rowStart, colStart);
+        this.board.grid[rowStart][colStart] = null;
+
+      }
+    } else {
+
+           // if there is NO checker at start position:
+      console.log('\nThat is not a valid checker to move.  Try again.\n');
+      alertTerminal2();
+      return false;
+    }
+
+         // if rowStart - rowEnd === 2, romove checker:
+    if (Math.abs(rowStart - rowEnd) === 2) {
+      let posArray = [];
+
+      posArray.push( ( parseInt(rowStart) + parseInt(rowEnd) ) / 2  );
+      posArray.push( ( parseInt(colStart) + parseInt(colEnd) ) / 2  );
+      this.board.killChecker(rowJump + colJump);
+      this.board.killChecker(posArray);
+
+          //  console.log(this.board.grid);
+          //  console.log('this.board.checkers: \n' + this.board.checkers);
+
+           // check for win: 1)see if any white pieces
+      if (this.board.grid.some( x => x.symbol != String.fromCharCode(0x0263A))) {
+        console.log('Black wins!');
+        game.board.viewGrid();
+        alertTerminal2();
+        alertTerminal2();
+        process.exit();
+
+           // check for win: 2)see if any black pieces
+      } else if (this.board.grid.some( x => x.symbol != String.fromCharCode(0x0263B))) {
+             console.log('White wins!');
+             game.board.viewGrid();
+             alertTerminal2();
+             alertTerminal2();
+             process.exit();
+           }
+    }
+  }
+}
 
 function getPrompt() {
   game.board.viewGrid();
@@ -131,6 +196,13 @@ function getPrompt() {
     });
   });
 }
+// function alertTerminal() {
+//   beep();
+// }
+//
+// function alertTerminal2() {
+//   beep(2);
+// }
 
 const game = new Game();
 game.start();
