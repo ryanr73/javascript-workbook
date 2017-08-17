@@ -1,3 +1,23 @@
+//Whiteboard for checkers
+//board is already created, so it needs pieces. First create checkers using
+//symbols to populate board
+//place checkers on board
+//white checkers array coordinates by column/row
+//[0,1], [0,3], [0,5], [0,7],
+//[1,0], [1,2], [1,4], [1,6],
+//[2,1], [2,3], [2,5], [2,7]
+//black checkers array coordinates by colum/row
+//[5,0], [5,2], [5,4], [5,6],
+//[6,1], [6,3], [6,5], [6,7],
+//[7,0], [7,2], [7,4], [7,6]
+//Once pieces are placed on board, create method to select a checker to move
+//will need a start point and end point
+//create legal and illegal moves
+//Also create metod for killing a checker once jumped (use splice method) and
+//create empty space when checker is removed
+//check for win once white or black are removed
+//clear board, restart game
+
 'use strict';
 
 const assert = require('assert');
@@ -8,8 +28,16 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+function Checker(color) {
+  // create checker pieces, white & black
+  //use string.fromCharCode because it uses unicode to create symbols of circles
+  //for checkers pieces
+  if(color === 'white') {
+    this.symbol = String.fromCharCode(0x0263A);
+  }
+  else if (color === 'black') {
+    this.symbol = String.fromCharCode(0x0263B);
+  }
 }
 
 function Board() {
@@ -53,7 +81,34 @@ function Board() {
   };
 
   // Your code here
+//create an array for checkers
+//create checkers on board
+this.checkers = [];
+//creates white checkers on board, adds to checkers array
+  this.createCheckers = function() {
+    for (let i = 0; i <= 2; i++) {
+        for (let j = 1; j <= 7; j+=2) {
+          if ((i === 1) && (j % 2 !== 0)) (j = j - 1);
+          let whiteChecker = new Checker('white');
+          this.grid[i][j] = whiteChecker;
+          this.checkers.push(whiteChecker);
+  }
 }
+//creates black checkers on board, adds to checkers array
+for (var i = 5; i <= 7; i++) {
+     for (var j = 1; j <= 7; j+=2) {
+       if ((i === 5 || i === 7) && (j % 2 !== 0)) (j = j - 1);
+       let blackChecker = new Checker('black');
+       this.grid[i][j] = blackChecker;
+       this.checkers.push(blackChecker);
+     }
+   };
+ }
+ this.selectChecker = function(position) {
+     console.log(this.grid);
+   }
+ }
+
 function Game() {
 
   this.board = new Board();
@@ -61,8 +116,11 @@ function Game() {
   this.start = function() {
     this.board.createGrid();
     // Your code here
+    this.board.createCheckers();
+
   };
 }
+
 
 function getPrompt() {
   game.board.viewGrid();
