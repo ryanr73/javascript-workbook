@@ -9,18 +9,44 @@
 //check for win, check for tie
 //reset board
 
+
+// returns all the cells in an array, adds eventListener to each cell on a click
+// returns all the cells in an array, adds eventListener to each cell on a click
 document.addEventListener('DOMContentLoaded', () => {
-  // Your code here
-  const player1Turn = X
-  document.querySelector('[data-cell='0']').addEventListener('click') = function () {
+  let playerTurn = 'X';
+  document.querySelectorAll('[data-cell]').forEach((cell) => {
+    cell.addEventListener('click', function() {
+      this.innerText = playerTurn;
+      if (winState()) {
+           document.querySelector('#announce-winner').innerText =`Player ${playerTurn}Wins!`;
+         }
+       playerTurn = playerTurn === 'X'? 'O' : 'X';
+    });
+  });
 
-}
+
+  function winState()  {
+    //this creates arrays of possbile winning options(horizontal,vertical,diagonal)
+    const winOptions = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ];
+
+    return winOptions.some((combo) => {
+      if (
+        document.querySelector(`[data-cell="${combo[0]}"]`).innerText===playerTurn &&
+        document.querySelector(`[data-cell="${combo[1]}"]`).innerText===playerTurn &&
+        document.querySelector(`[data-cell="${combo[2]}"]`).innerText===playerTurn
+      ) {
+        return true;
+      }
+    });
+  }
+
 });
-function winState() {
-  const dataCell = $(['data-cell']);
-  //this creates arrays of possbile winning options(horizontal,vertical,diagonal)
-  const winOptions = [[0,1,2], [3,4,5],[6,7,8], [0,3,6],
-                      [1,4,7],[2,5,8],[0,4,8], [2,4,6]];
-
-
-}
