@@ -21,11 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
            document.querySelector('#announce-winner').innerText =`Player ${playerTurn}Wins!`;
          }
        playerTurn = playerTurn === 'X'? 'O' : 'X';
+       checkForTie();
     });
   });
 
 
-  function winState()  {
+  function winState() {
     //this creates arrays of possbile winning options(horizontal,vertical,diagonal)
     const winOptions = [
       [0,1,2],
@@ -47,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
       }
     });
-  }
+}
+
+  function checkForTie() {
+          if(turns === 9) {
+              $('#announce-winner').text('It\'s a tie!');
+              $('[data-cell]').empty();
+              turns = 0;
+        }
+    }
 
 });
