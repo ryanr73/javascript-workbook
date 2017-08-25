@@ -4,44 +4,46 @@ class TicTacToe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      0: '',
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: '',
-      6: '',
-      7: '',
-      8: '',
-    turn: 'X'
-  };
-}
+      turn: 'X'
+    };
+  }
 
-handleClick=(cell)=>{
-// const cellEvent = event.target.getAttribute('data-cell');
-  const state = {...this.state};
+handleClick=(cell) => {
+    const state = {...this.state};
     state[cell] = this.state.turn;
     state['turn'] = this.state.turn === "X" ? "O" : "X";
     this.setState(state)
     this.checkWin();
-};
+  }
 
-  render() {
-    // const cellEvent = event.target.getAttribute('data-cell');
-    const combos = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
-    ];
+checkWin = () => {
+  const combos = [
+    [0, 1, 2],
+    [3 ,4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
 
-    const playerWon = '';
+let playerWon = '';
 
+  combos.forEach((combo) => {
+    if (
+      this.state[combo[0]]
+      && this.state[combo[0]] === this.state[combo[1]]
+      && this.state[combo[0]] === this.state[combo[2]]
+    ) {
+       playerWon = this.state[combo[0]];
+    }
+  });
+}
 
+render() {
+//this creates arrays of possbile winning options(horizontal,vertical,diagonal)
+      {// <div>Player {playerWon} Won!</div>}
     return (
       <div>
         <div>Player {this.state.turn} Turn</div>
@@ -60,10 +62,11 @@ handleClick=(cell)=>{
           <div data-cell="7"onClick={() => this.handleClick('cell7')}>{this.state.cell7}</div>
           <div data-cell="8"onClick={() => this.handleClick('cell8')}>{this.state.cell8}</div>
         </div>
-        <div>Player {playerWon} Won!</div>
+
       </div>
     );
   }
+}
 }
 
 ReactDOM.render(<TicTacToe />, document.getElementById('tic-tac-toe'));

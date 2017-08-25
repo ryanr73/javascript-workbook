@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 class TowersOfHanoi extends React.Component {
   constructor(props) {
