@@ -1,80 +1,63 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Your code here
+// Your code here
+let solution = '';
 
-  let board = [];
-  let solution = '';
-  let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-
-
-
-  function generateSolution() {
-    for (let i = 0; i < 4; i++) {
-      const randomIndex = getRandomInt(0, letters.length);
-      solution += letters[randomIndex];
-    }
-  }
-
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-   function generateHint(userGuess) {
-     //create two options: 1) right color, right place, 2)right color, wrong place
-    //alert user for hint option 1 or 2
-    //alert user for hint option 1 or 2, must set up format of [1-2]
-     let exactMatch = 0;
-     let correctLetter = 0;
-     let solutionArr = solution.split('');
-    let userGuessArr = userGuess.split('');
-    for (let i=0; i<userGuess.length; i++) {
-      if (userGuess[i] === solution[i]) {
-        exactMatch++;
-        solutionArr[i] = '';
-         userGuessArr[i]= '';
-       }
-     }
-   for(let i=0; i<userGuessArr.length; i++) {
-     if(userGuessArr[i]) {
-      for (let j=0; j<solutionArr.length; j++) {
-         if (userGuessArr[i] === solutionArr[j]) {
-         correctLetter++;
-          solutionArr[j] = '';
-        }
-      }
-    }
-   }
-});
+const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+// assigns guess when clicking submit
+document.querySelector('button').onclick = function() { let guess = (document.querySelector('input').value);
+// runs mastermind
+mastermind(guess);
 }
 
-    //valid contains a-h and only four letters
-    //valid tests player entry
-  function valid(userGuess) {
- if (userGuess.length !== solution.length) {
-    return false;
+function generateSolution() {
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = getRandomInt(0, letters.length);
+    solution += letters[randomIndex];
   }
-  return userGuess.split('').every(myLet => letters.some(validLetter => myLet === validLetter));
-  // console.log(solution);
-     // console.log(guess);
-     return true;
-   }
+}
+// runs generate solution... which oddly enough, generates a solution
+generateSolution();
 
-    function mastermind(guess) {
-      // solution = 'abcd'; // Comment this out to generate a random solution
-      // if test entry contains a-h and only four letters
-      //    test for win
-      //    if no win, generateHint
-       //else test entry is bad, alert user to try again
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+// all the hint caca
+function generateHint(solution, guess) {
+  // your code here
+  let exactMatch = 0;
+  let correctLetter = 0;
+  let splSolution = solution.split('');
+  let splGuess = guess.split('');
+  for (var i = 0; i < splGuess.length; i++){
+    if(splGuess[i] === splSolution[i]){
+      exactMatch += 1;
+    }
 
-    if (valid(guess)) {
-    board[board.length] = `${guess} : ${generateHint(guess)}`;
-       if (guess === solution) {
-         console.log('You Win!')
-       } else {
-             console.log(`Hint (exact match-correct letter): ${generateHint(guess)}`);
-           }
-         } else {
-           console.log('Wrong options, use only letters A-H and only 4 letters');
-          }
-        }
+    if (splSolution.includes(splGuess[i])) {
+      correctLetter += 1;
+      let foundIndex = splSolution.indexOf(splGuess[i]);
+      splSolution[foundIndex] = null;
+    }
+  }
+  // added a couple of spaces to seperate guess from hint
+  return `${exactMatch}-${correctLetter-exactMatch}`;
+}
+
+ function mastermind(guess) {
+  // next 3 lines add a p, append to div(board) and fills it with guess and hint
+  // solution = 'abcd'; // Comment this out to generate a random solution
+  let newGuess = document.createElement('p')
+  document.getElementById('board').appendChild(newGuess);
+  newGuess.textContent = (guess + generateHint(solution, guess));
+  if(guess === solution) {
+    alert ("You guessed it!");
+  } else {
+    return generateHint(solution, guess);
+  }
+  // Clears page when clicking okay on alert.
+  if(!alert("You guessed it!")){ location = location}
+}
+
+});

@@ -1,157 +1,21 @@
-body{
-background-color: #3333CC;
+body {
+  background: linear-gradient(blue, gray);
 }
 
-.flexer {
-  display: flex;
+h1 {
+text-align: center;
+font-size:50px;
+font-style: italic;
 }
 
-.board {
-  background-color: #CCFF00;
-  width: 35%;
-  height: 95vh;
-  margin:auto;
-  box-shadow: 10px 10px 15px black;
-}
-
-/*answer-container*/
-.answer-container {
-  box-sizing: border-box;
-  width: 100%;
-  height: 10%;
-  padding-top: 2%;
-}
-
-.answer-box {
-  width: 70%;
-  height: 100%;
-}
-
-.answer {
-  width: 80%;
-  height: 80%;
-  border: 1px solid black;
-  margin: auto;
-  background-color: #DCDCDC;
-  box-shadow: 2px 2px 4px black;
-}
-
-.button-container{
-  width: 30%;
-  height: 100%;
-}
-
-.submit-button {
-  width: 80%;
-  height: 80%;
-  background-color: #DCDCDC;
-  margin: auto;
-  padding-top: 5%;
-  box-shadow: 2px 2px 4px black;
-}
-
-.text {
-  margin: auto;
-  text-align: center;
-}
-/*guess-container*/
-.guess-container {
-  box-sizing: border-box;
-  width: 100%;
-  height: 80%;
-}
-
-.guess-row {
-  box-sizing: border-box;
-  height: 10%;
-  width: 100%;
-  border-bottom: 1px solid #DCDCDC;
-}
-
-.guess-pegs {
-  height:100%;
-  width: 70%;
-  padding: 0 5%;
-}
-
-.guess-peg {
-  height: 100%;
-  width: 23%;
-  border: 1px solid #3333CC;
-  border-radius: 50%;
-  margin-left: 2%;
-  background: linear-gradient(#00CCFF,yellow);
-}
-
-.grade-pegs {
-  height: 100%;
-  width: 30%;
-  flex-wrap: wrap;
-  padding: 0 5%;
-}
-
-.grade-peg {
-  box-sizing: border-box;
-  width: 37%;
-  height: 50%;
-  border: 1px solid black;
-  margin-left: 5%;
-  border-radius: 50%;
-  background: linear-gradient(#00CCFF,yellow);
-}
-
-/*selection-containerr*/
-.selection-container {
-  width: 100%;
-  height: 10%;
-  padding-top: 2px;
-}
-
-.selector-outer {
-  box-sizing: border-box;
-  width: 16%;
-  height: 82%;
-  border: 1px solid black;
-  margin: 0 .25px;
-  border-radius: 50%;
-}
-
-.selector-outer:hover{
-  border: 1px solid white;
-}
-
-.selector-inner {
-  box-sizing: border-box;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  border: 1px solid black;
-  margin: 18% 18% 22% 22%;
-}
-.selector-inner:hover{
-  border: 1px solid white;
-}
-
-.red {
-  background-color: red;
-}
-
-.green {
-  background-color: green;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.black {
-  background-color: black;
-}
-
-.white {
-  background-color: white;
-}
-
-.orange {
-  background: orange;
+.flex-container {
+ width:30%;
+ height:95vh;
+ padding: 10px 50px 10px 50px;
+ margin:auto;
+ border-style: solid;
+ border-color: black;
+ border-width: 3px;
+ background: linear-gradient(#C8C8C8, blue);
+ font-weight: bold;
 }
