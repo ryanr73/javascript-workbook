@@ -3,19 +3,19 @@ body {
 }
 
 h1 {
-text-align: center;
-font-size:50px;
-font-style: italic;
+  text-align: center;
+  font-size:50px;
+  font-style: italic;
 }
 
 .flex-container {
- width:30%;
- height:95vh;
- padding: 10px 50px 10px 50px;
- margin:auto;
- border-style: solid;
- border-color: black;
- border-width: 3px;
- background: linear-gradient(#C8C8C8, blue);
- font-weight: bold;
+  width:30%;
+  height:95vh;
+  padding: 10px 50px 10px 50px;
+  margin:auto;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  background: linear-gradient(#C8C8C8, blue);
+  font-weight: bold;
 }
