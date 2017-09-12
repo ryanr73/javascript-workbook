@@ -1,0 +1,37 @@
+body {
+  margin-left: 50px;
+  margin-top: 30px;
+  background: linear-gradient(#C8C8C8, #3300FF);
+}
+
+.news {
+  max-width: 50%
+}
+
+.news-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  background-color: #6699FF;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  line-height: 65px;
+  margin-top: 0;
+}
+
+h1:hover {
+  background-color: #555;
+  color: #DAA520;
+  border-radius: 25px;
+}
